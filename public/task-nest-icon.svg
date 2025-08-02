@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Dark blue circle background -->
+  <circle cx="256" cy="256" r="256" fill="#2D3A5F"/>
+  
+  <!-- Inner circle rings -->
+  <circle cx="256" cy="256" r="220" fill="#2D3A5F" stroke="#252E4A" stroke-width="10"/>
+  <circle cx="256" cy="256" r="200" fill="#2D3A5F" stroke="#252E4A" stroke-width="5"/>
+  
+  <!-- Task icon -->
+  <g>
+    <!-- Clipboard outline -->
+    <path d="M340 150v212c0 11-9 20-20 20H192c-11 0-20-9-20-20V150c0-11 9-20 20-20h25v-10c0-5.5 4.5-10 10-10h78c5.5 0 10 4.5 10 10v10h25c11 0 20 9 20 20z" fill="none" stroke="#5FEFD9" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Clipboard top -->
+    <path d="M256 120c-8.3 0-15 6.7-15 15s6.7 15 15 15 15-6.7 15-15-6.7-15-15-15z" fill="#5FEFD9"/>
+    
+    <!-- Checkmark -->
+    <path d="M220 270l30 30 60-60" fill="none" stroke="#5FEFD9" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

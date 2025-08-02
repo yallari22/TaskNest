@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="400" height="80" viewBox="0 0 400 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- TASK NEST in the same style as the original TTFEHEET -->
+  <path d="M20 15H60V30H45V65H35V30H20V15Z" fill="#4285F4"/>
+  <path d="M70 15H110V30H95V65H85V30H70V15Z" fill="#4285F4"/>
+  <path d="M120 15H160V30H140V40H155V55H140V65H120V50H135V40H120V15Z" fill="#4285F4"/>
+  <path d="M170 15H210V30H190V40H205V55H190V65H170V15Z" fill="#4285F4"/>
+  
+  <path d="M230 15H240V35H260V15H270V65H260V45H240V65H230V15Z" fill="#4285F4"/>
+  <path d="M280 15H320V30H300V40H315V55H300V65H280V15Z" fill="#4285F4"/>
+  <path d="M330 15H370V30H350V40H365V55H350V65H330V15Z" fill="#4285F4"/>
+  <path d="M380 15H390V65H380V15Z" fill="#4285F4"/>
+</svg>

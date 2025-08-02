@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Styles */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 221 70% 91%;
+    --accent-foreground: 221 83% 53%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+    --chart-1: 221 83% 53%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-title {
+    @apply font-extrabold tracking-tighter text-transparent pr-2 pb-2 bg-clip-text;
+    background-image: linear-gradient(to bottom right, var(--gradient-from, #3b82f6), var(--gradient-via, #dbeafe), var(--gradient-to, #60a5fa));
+  }
+
+  :root {
+    --gradient-from: #3b82f6;
+    --gradient-via: #93c5fd;
+    --gradient-to: #1d4ed8;
+  }
+
+  .dark {
+    --gradient-from: #3b82f6;
+    --gradient-via: #dbeafe;
+    --gradient-to: #60a5fa;
+  }
+
+  .animate-fade-in-up {
+    @apply opacity-0 translate-y-4 animate-[fadeInUp_0.8s_ease-out_forwards];
+  }
+
+  .animate-fade-in {
+    @apply opacity-0 animate-[fadeIn_1s_ease-out_forwards];
+  }
+
+  .animate-bounce-in {
+    @apply animate-[bounceIn_1s_ease-out];
+  }
+
+  .animate-slow-fade-up {
+    @apply opacity-0 translate-y-10 animate-[slowFadeUp_1.8s_ease-out_forwards];
+  }
+
+  .animate-delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .animate-delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .animate-delay-600 {
+    animation-delay: 0.6s;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slowFadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Markdown list support */
+.wmde-markdown ul {
+  list-style-type: disc;
+  padding-left: 15px !important;
+  color: var(--foreground);
+}
+
+/* Background pattern */
+.animated-dotted-background {
+  background-color: var(--background-color, #0a111f);
+  background-image: radial-gradient(var(--dot-color, #4a5568) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+:root {
+  --background-color: #f8fafc;
+  --dot-color: #cbd5e1;
+}
+
+.dark {
+  --background-color: #0a111f;
+  --dot-color: #4a5568;
+}

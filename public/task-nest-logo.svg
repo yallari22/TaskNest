@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="400" height="80" viewBox="0 0 400 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20 15H60V25H45V65H35V25H20V15Z" fill="#3B82F6"/>
+  <path d="M65 15H75V40H95V15H105V65H95V50H75V65H65V15Z" fill="#3B82F6"/>
+  <path d="M115 15H155V25H125V35H150V45H125V55H155V65H115V15Z" fill="#3B82F6"/>
+  
+  <path d="M165 15H175V55H205V65H165V15Z" fill="#60A5FA"/>
+  <path d="M215 15H255V25H225V35H250V45H225V65H215V15Z" fill="#60A5FA"/>
+  <path d="M265 15H305V25H275V35H300V45H275V55H305V65H265V15Z" fill="#60A5FA"/>
+  <path d="M315 15H325V35H345V15H355V65H345V45H325V65H315V15Z" fill="#60A5FA"/>
+  <path d="M365 15H375V55H395V65H365V15Z" fill="#60A5FA"/>
+  
+  <!-- Nest icon -->
+  <path d="M330 30C330 25.5817 333.582 22 338 22H362C366.418 22 370 25.5817 370 30V50C370 54.4183 366.418 58 362 58H338C333.582 58 330 54.4183 330 50V30Z" fill="none" stroke="#93C5FD" stroke-width="2"/>
+  <path d="M340 35L350 45L360 35" stroke="#93C5FD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

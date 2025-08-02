@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="400" height="80" viewBox="0 0 400 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @font-face {
+      font-family: 'Arial';
+      font-weight: bold;
+    }
+    text {
+      font-family: 'Arial', sans-serif;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+  </style>
+  <text x="20" y="55" font-size="50" fill="#4285F4">TASK NEST</text>
+</svg>

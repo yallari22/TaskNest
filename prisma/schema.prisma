@@ -1,0 +1,197 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String         @id @default(cuid())
+  email          String         @unique
+  name           String?
+  imageUrl       String?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  clerkUserId    String         @unique
+  assignedIssues Issue[]        @relation("Assignee")
+  createdIssues  Issue[]        @relation("Reporter")
+  notifications  Notification[]
+  timeLogs       TimeLog[]
+  comments       Comment[]
+  commentMentions CommentMention[]
+  uploads        FileAttachment[]
+}
+
+model Project {
+  name           String
+  description    String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  id             String   @id @default(cuid())
+  organizationId String
+  key            String
+  issues         Issue[]
+  sprints        Sprint[]
+  workflows      Workflow[]
+
+  @@unique([organizationId, key])
+}
+
+model Sprint {
+  id        String       @id @default(cuid())
+  name      String       @unique
+  startDate DateTime
+  endDate   DateTime
+  status    SprintStatus @default(PLANNED)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  projectId String
+  issues    Issue[]
+  project   Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model Issue {
+  id            String         @id @default(cuid())
+  title         String
+  description   String?
+  status        IssueStatus
+  order         Int
+  priority      IssuePriority
+  assigneeId    String?
+  reporterId    String
+  sprintId      String?
+  statusId      String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  projectId     String
+  totalTimeSpent Int           @default(0)
+  assignee      User?          @relation("Assignee", fields: [assigneeId], references: [id])
+  project       Project        @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  reporter      User           @relation("Reporter", fields: [reporterId], references: [id])
+  sprint        Sprint?        @relation(fields: [sprintId], references: [id])
+  workflowStatus WorkflowStatus? @relation("StatusToIssue", fields: [statusId], references: [id])
+  notifications Notification[]
+  timeLogs      TimeLog[]
+  comments      Comment[]
+  attachments   FileAttachment[]
+
+  @@index([status, order])
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  title     String
+  content   String
+  type      NotificationType
+  issueId   String?
+  read      Boolean          @default(false)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  issue     Issue?           @relation(fields: [issueId], references: [id], onDelete: Cascade)
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum SprintStatus {
+  PLANNED
+  ACTIVE
+  COMPLETED
+}
+
+enum IssueStatus {
+  TODO
+  IN_PROGRESS
+  IN_REVIEW
+  DONE
+}
+
+enum IssuePriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum NotificationType {
+  ISSUE_CREATED
+  ISSUE_ASSIGNED
+  ISSUE_UPDATED
+  STATUS_CHANGED
+  COMMENT_ADDED
+}
+
+model TimeLog {
+  id          String   @id @default(cuid())
+  description String?
+  timeSpent   Int
+  loggedAt    DateTime @default(now())
+  issueId     String
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  issue       Issue    @relation(fields: [issueId], references: [id], onDelete: Cascade)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Workflow {
+  id            String          @id @default(cuid())
+  name          String
+  projectId     String
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  project       Project         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  statuses      WorkflowStatus[]
+}
+
+model WorkflowStatus {
+  id            String          @id @default(cuid())
+  name          String
+  color         String
+  order         Int
+  workflowId    String
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  workflow      Workflow        @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+  issues        Issue[]         @relation("StatusToIssue")
+}
+
+model Comment {
+  id            String          @id @default(cuid())
+  content       String
+  issueId       String
+  authorId      String
+  parentId      String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  issue         Issue           @relation(fields: [issueId], references: [id], onDelete: Cascade)
+  author        User            @relation(fields: [authorId], references: [id])
+  parent        Comment?        @relation("CommentReplies", fields: [parentId], references: [id])
+  replies       Comment[]       @relation("CommentReplies")
+  mentions      CommentMention[]
+}
+
+model CommentMention {
+  id            String          @id @default(cuid())
+  commentId     String
+  userId        String
+  createdAt     DateTime        @default(now())
+  comment       Comment         @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  user          User            @relation(fields: [userId], references: [id])
+}
+
+model FileAttachment {
+  id            String          @id @default(cuid())
+  filename      String
+  originalName  String
+  mimeType      String
+  size          Int
+  url           String
+  issueId       String
+  uploaderId    String
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  issue         Issue           @relation(fields: [issueId], references: [id], onDelete: Cascade)
+  uploader      User            @relation(fields: [uploaderId], references: [id])
+}
